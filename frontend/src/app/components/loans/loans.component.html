@@ -1,0 +1,82 @@
+<div class="page-container">
+  <header class="page-header">
+    <div class="header-content">
+      <h1>Controle de Empréstimos</h1>
+      <p class="subtitle">Gerencie as retiradas e devoluções de livros</p>
+    </div>
+    <button class="btn btn-primary" (click)="toggleForm()">
+      <span>{{ showForm() ? 'Cancelar' : 'Novo Empréstimo' }}</span>
+    </button>
+  </header>
+
+  <!-- Form Card -->
+  <div *ngIf="showForm()" class="glass-card form-card">
+    <h2>Registrar Novo Empréstimo</h2>
+    <form [formGroup]="loanForm" (ngSubmit)="submitForm()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Livro para Empréstimo</label>
+          <select formControlName="book" class="input-field">
+            <option [ngValue]="null" disabled>Selecione um livro disponível</option>
+            <option *ngFor="let book of books()" [ngValue]="book">{{ book.title }} ({{ book.stock }} disp.)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nome do Locatário</label>
+          <input type="text" formControlName="borrowerName" class="input-field" placeholder="Ex: João da Silva">
+        </div>
+      </div>
+      <p class="info-text">💡 O prazo de devolução é de 7 dias a partir de hoje.</p>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="loanForm.invalid">Confirmar Empréstimo</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loans Table -->
+  <div class="glass-card table-card">
+    <table class="premium-table">
+      <thead>
+        <tr>
+          <th>Locatário</th>
+          <th>Livro</th>
+          <th>Data Empréstimo</th>
+          <th>Data Devolução</th>
+          <th>Status</th>
+          <th>Multa</th>
+          <th class="actions-cell">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans()">
+          <td><span class="text-white font-semibold">{{ loan.borrowerName }}</span></td>
+          <td>{{ loan.book.title }}</td>
+          <td>{{ loan.loanDate | date:'shortDate' }}</td>
+          <td>{{ loan.dueDate | date:'shortDate' }}</td>
+          <td>
+            <span class="status-badge" [ngClass]="getStatusClass(loan)">
+              {{ getStatusText(loan) }}
+            </span>
+          </td>
+          <td>
+            <span *ngIf="loan.fine && loan.fine > 0" class="fine-text">
+              R$ {{ loan.fine | number:'1.2-2' }}
+            </span>
+            <span *ngIf="!loan.fine || loan.fine === 0" class="no-fine">-</span>
+          </td>
+          <td class="actions-cell">
+            <button *ngIf="!loan.returnDate" class="btn-sm btn-return" (click)="returnBook(loan.id!)">
+              Devolver
+            </button>
+            <span *ngIf="loan.returnDate" class="returned-info">
+              ✅ {{ loan.returnDate | date:'shortDate' }}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="loans().length === 0">
+          <td colspan="7" class="empty-row">Nenhum empréstimo registrado.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

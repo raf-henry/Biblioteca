@@ -1,0 +1,59 @@
+<div class="page-container">
+  <header class="page-header">
+    <div class="header-content">
+      <h1>Gerenciar Autores</h1>
+      <p class="subtitle">Cadastre e organize os autores da sua biblioteca</p>
+    </div>
+    <button class="btn btn-primary" (click)="toggleForm()">
+      <span>{{ showForm() ? 'Cancelar' : 'Novo Autor' }}</span>
+    </button>
+  </header>
+
+  <!-- Form Modal/Card -->
+  <div *ngIf="showForm()" class="glass-card form-card">
+    <h2>{{ authorForm.value.id ? 'Editar Autor' : 'Novo Autor' }}</h2>
+    <form [formGroup]="authorForm" (ngSubmit)="submitForm()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" formControlName="name" class="input-field" placeholder="Ex: J.R.R. Tolkien">
+        </div>
+        <div class="form-group">
+          <label>Nacionalidade</label>
+          <input type="text" formControlName="nationality" class="input-field" placeholder="Ex: Britânico">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="authorForm.invalid">Salvar Autor</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Data Table -->
+  <div class="glass-card table-card">
+    <table class="premium-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Nacionalidade</th>
+          <th class="actions-cell">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let author of authors()">
+          <td><span class="id-badge">#{{ author.id }}</span></td>
+          <td><span class="text-white font-semibold">{{ author.name }}</span></td>
+          <td>{{ author.nationality }}</td>
+          <td class="actions-cell">
+            <button class="icon-btn edit-btn" (click)="editAuthor(author)" title="Editar">✏️</button>
+            <button class="icon-btn delete-btn" (click)="deleteAuthor(author.id!)" title="Excluir">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="authors().length === 0">
+          <td colspan="4" class="empty-row">Nenhum autor cadastrado.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

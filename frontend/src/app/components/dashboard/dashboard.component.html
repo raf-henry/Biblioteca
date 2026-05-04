@@ -1,0 +1,90 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p class="subtitle">Bem-vindo ao Sistema de Gestão de Biblioteca</p>
+  </header>
+
+  <div class="stats-grid">
+    <!-- Total Books -->
+    <div class="glass-card stat-card" id="card-total-books">
+      <div class="stat-icon">📚</div>
+      <div class="stat-info">
+        <h3>Total de Livros</h3>
+        <p class="stat-value">{{ stats().totalBooks }}</p>
+      </div>
+    </div>
+
+    <!-- Available -->
+    <div class="glass-card stat-card" id="card-available">
+      <div class="stat-icon">✅</div>
+      <div class="stat-info">
+        <h3>Exemplares Disponíveis</h3>
+        <p class="stat-value">{{ stats().availableBooks }}</p>
+      </div>
+    </div>
+
+    <!-- Active Loans -->
+    <div class="glass-card stat-card highlight-indigo" id="card-loans">
+      <div class="stat-icon">🤝</div>
+      <div class="stat-info">
+        <h3>Empréstimos Ativos</h3>
+        <p class="stat-value">{{ stats().activeLoans }}</p>
+      </div>
+    </div>
+
+    <!-- Overdue -->
+    <div class="glass-card stat-card highlight-rose" id="card-overdue">
+      <div class="stat-icon">⚠️</div>
+      <div class="stat-info">
+        <h3>Atrasados</h3>
+        <p class="stat-value">{{ stats().overdueLoans }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content-grid">
+    <div class="glass-card recent-activity">
+      <div class="card-header">
+        <h2>Atividade Recente</h2>
+        <button class="glass-button-sm" routerLink="/loans">Ver Tudo</button>
+      </div>
+      <div class="activity-list">
+        <div *ngFor="let loan of recentLoans()" class="activity-item">
+          <div class="activity-info">
+            <span class="activity-title">{{ loan.book.title }}</span>
+            <span class="activity-user">{{ loan.borrowerName }}</span>
+          </div>
+          <div class="activity-meta">
+            <span class="status-badge" [ngClass]="loan.returnDate ? 'status-returned' : (stats().overdueLoans > 0 ? 'status-overdue' : 'status-active')">
+              {{ loan.returnDate ? 'Devolvido' : 'Emprestado' }}
+            </span>
+            <span class="activity-date">{{ loan.loanDate | date:'shortDate' }}</span>
+          </div>
+        </div>
+        <div *ngIf="recentLoans().length === 0" class="empty-state">
+          Nenhuma atividade registrada.
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-card quick-actions">
+      <div class="card-header">
+        <h2>Ações Rápidas</h2>
+      </div>
+      <div class="actions-grid">
+        <button class="action-btn" routerLink="/books">
+          <span class="icon">➕</span>
+          <span>Novo Livro</span>
+        </button>
+        <button class="action-btn" routerLink="/loans">
+          <span class="icon">📝</span>
+          <span>Novo Empréstimo</span>
+        </button>
+        <button class="action-btn" routerLink="/authors">
+          <span class="icon">👤</span>
+          <span>Gerenciar Autores</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

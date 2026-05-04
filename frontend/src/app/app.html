@@ -1,0 +1,58 @@
+<!-- Add FontAwesome to index.html if needed, or use emojis for simplicity in this demo -->
+<aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+  <div class="toggle-btn" (click)="toggleSidebar()">
+    <span style="font-size: 1.5rem; cursor: pointer;">{{ isSidebarCollapsed ? '→' : '←' }}</span>
+  </div>
+
+  <div style="padding: 0 20px 20px 24px; display: flex; align-items: center; gap: 12px; margin-bottom: 2rem;">
+    <div style="background: var(--primary); min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">B</div>
+    <span *ngIf="!isSidebarCollapsed" style="font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; transition: opacity 0.2s;">Biblioteca<span style="color: var(--primary);">System</span></span>
+  </div>
+
+  <nav style="flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 0 12px;">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+      <span class="icon">📊</span>
+      <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+    </a>
+    <a routerLink="/books" routerLinkActive="active" class="nav-item">
+      <span class="icon">📚</span>
+      <span *ngIf="!isSidebarCollapsed">Livros</span>
+    </a>
+    <a routerLink="/authors" routerLinkActive="active" class="nav-item">
+      <span class="icon">✍️</span>
+      <span *ngIf="!isSidebarCollapsed">Autores</span>
+    </a>
+    <a routerLink="/loans" routerLinkActive="active" class="nav-item">
+      <span class="icon">🤝</span>
+      <span *ngIf="!isSidebarCollapsed">Empréstimos</span>
+    </a>
+  </nav>
+
+  <div style="padding: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px;">
+    <div style="min-width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--accent));"></div>
+    <div *ngIf="!isSidebarCollapsed" style="overflow: hidden; transition: opacity 0.2s;">
+      <div style="font-size: 0.9rem; font-weight: 600;">Admin User</div>
+      <div style="font-size: 0.7rem; color: var(--text-muted);">Master Librarian</div>
+    </div>
+  </div>
+</aside>
+
+<main class="main-content" [class.expanded]="isSidebarCollapsed">
+  <router-outlet></router-outlet>
+</main>
+
+<style>
+  .active {
+    color: var(--primary) !important;
+    position: relative;
+  }
+  .active::after {
+    content: '';
+    position: absolute;
+    bottom: -1.4rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+  }
+</style>

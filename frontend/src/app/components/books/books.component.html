@@ -1,0 +1,95 @@
+<div class="page-container">
+  <header class="page-header">
+    <div class="header-content">
+      <h1>Inventário de Livros</h1>
+      <p class="subtitle">Gerencie o acervo e o estoque da biblioteca</p>
+    </div>
+    <div class="header-actions">
+      <input type="text" [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)" class="input-field search-inline" placeholder="Buscar por título ou ISBN...">
+      <button class="btn btn-primary" (click)="toggleForm()">
+        <span>{{ showForm() ? 'Cancelar' : 'Novo Livro' }}</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Form Modal/Card -->
+  <div *ngIf="showForm()" class="glass-card form-card">
+    <h2>{{ bookForm.value.id ? 'Editar Livro' : 'Novo Livro' }}</h2>
+    <form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Título do Livro</label>
+          <input type="text" formControlName="title" class="input-field" placeholder="Ex: O Hobbit">
+        </div>
+        <div class="form-group">
+          <label>ISBN</label>
+          <input type="text" formControlName="isbn" class="input-field" placeholder="Ex: 978-0261102217">
+        </div>
+        <div class="form-group">
+          <label>Autor</label>
+          <select formControlName="author" class="input-field" [compareWith]="compareAuthors">
+            <option [ngValue]="null" disabled>Selecione um autor</option>
+            <option *ngFor="let author of authors()" [ngValue]="author">{{ author.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantidade em Estoque</label>
+          <input type="number" formControlName="stock" class="input-field">
+        </div>
+        <div class="form-group">
+          <label>Ano de Publicação</label>
+          <input type="number" formControlName="publicationYear" class="input-field" placeholder="Ex: 1954">
+        </div>
+        <div class="form-group">
+          <label>Gênero</label>
+          <input type="text" formControlName="genre" class="input-field" placeholder="Ex: Fantasia">
+        </div>
+        <div class="form-group full-width">
+          <label>Descrição/Sinopse</label>
+          <textarea formControlName="description" class="input-field" placeholder="Breve resumo do livro..."></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Salvar Livro</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Data Table -->
+  <div class="glass-card table-card">
+    <table class="premium-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+          <th>Estoque</th>
+          <th class="actions-cell">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of filteredBooks()">
+          <td>
+            <div class="book-info">
+              <span class="text-white font-semibold">{{ book.title }}</span>
+            </div>
+          </td>
+          <td>{{ book.author.name }}</td>
+          <td><span class="isbn-tag">{{ book.isbn }}</span></td>
+          <td>
+            <span class="stock-badge" [ngClass]="book.stock > 0 ? 'in-stock' : 'out-of-stock'">
+              {{ book.stock }} unid.
+            </span>
+          </td>
+          <td class="actions-cell">
+            <button class="icon-btn edit-btn" (click)="editBook(book)" title="Editar">✏️</button>
+            <button class="icon-btn delete-btn" (click)="deleteBook(book.id!)" title="Excluir">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredBooks().length === 0">
+          <td colspan="5" class="empty-row">Nenhum livro encontrado.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
