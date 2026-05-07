@@ -18,6 +18,8 @@ public class Book {
     private Integer stock;
     private Integer publicationYear;
     private String genre;
+    @Lob
+    @Column(columnDefinition = "TEXT", length = 10000)
     private String description;
 
     @ManyToOne

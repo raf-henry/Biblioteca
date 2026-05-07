@@ -78,6 +78,11 @@ body {
   outline: none;
 }
 
+select.input-field option {
+  background-color: #1e293b;
+  color: white;
+}
+
 textarea.input-field {
   min-height: 100px;
   resize: vertical;

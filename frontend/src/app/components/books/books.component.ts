@@ -54,9 +54,15 @@ export class BooksComponent implements OnInit {
 
   submitForm(): void {
     if (this.bookForm.valid) {
-      this.libraryService.saveBook(this.bookForm.value).subscribe(() => {
-        this.loadBooks();
-        this.toggleForm();
+      this.libraryService.saveBook(this.bookForm.value).subscribe({
+        next: () => {
+          this.loadBooks();
+          this.toggleForm();
+        },
+        error: (err) => {
+          console.error('Erro ao salvar livro:', err);
+          alert('Erro ao salvar o livro. Verifique se os dados estão corretos ou se a sinopse é muito grande.');
+        }
       });
     }
   }

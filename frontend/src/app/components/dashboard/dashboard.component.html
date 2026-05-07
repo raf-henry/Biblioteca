@@ -58,7 +58,7 @@
             <span class="status-badge" [ngClass]="loan.returnDate ? 'status-returned' : (stats().overdueLoans > 0 ? 'status-overdue' : 'status-active')">
               {{ loan.returnDate ? 'Devolvido' : 'Emprestado' }}
             </span>
-            <span class="activity-date">{{ loan.loanDate | date:'shortDate' }}</span>
+            <span class="activity-date">{{ loan.loanDate | date:'dd/MM/yyyy' }}</span>
           </div>
         </div>
         <div *ngIf="recentLoans().length === 0" class="empty-state">
@@ -84,6 +84,27 @@
           <span class="icon">👤</span>
           <span>Gerenciar Autores</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card popular-books-chart">
+    <div class="card-header">
+      <h2>Livros Mais Emprestados</h2>
+      <span class="subtitle">Top 5 títulos</span>
+    </div>
+    <div class="chart-container">
+      <div *ngFor="let item of topBooks()" class="chart-row">
+        <div class="book-label">
+          <span class="book-title">{{ item.title }}</span>
+          <span class="count">{{ item.count }} empréstimos</span>
+        </div>
+        <div class="bar-container">
+          <div class="bar" [style.width.%]="item.percentage"></div>
+        </div>
+      </div>
+      <div *ngIf="topBooks().length === 0" class="empty-state">
+        Nenhum dado de empréstimo disponível para gerar o gráfico.
       </div>
     </div>
   </div>

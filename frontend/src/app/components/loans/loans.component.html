@@ -51,8 +51,8 @@
         <tr *ngFor="let loan of loans()">
           <td><span class="text-white font-semibold">{{ loan.borrowerName }}</span></td>
           <td>{{ loan.book.title }}</td>
-          <td>{{ loan.loanDate | date:'shortDate' }}</td>
-          <td>{{ loan.dueDate | date:'shortDate' }}</td>
+          <td>{{ loan.loanDate | date:'dd/MM/yyyy' }}</td>
+          <td>{{ loan.dueDate | date:'dd/MM/yyyy' }}</td>
           <td>
             <span class="status-badge" [ngClass]="getStatusClass(loan)">
               {{ getStatusText(loan) }}
@@ -69,7 +69,7 @@
               Devolver
             </button>
             <span *ngIf="loan.returnDate" class="returned-info">
-              ✅ {{ loan.returnDate | date:'shortDate' }}
+              ✅ {{ loan.returnDate | date:'dd/MM/yyyy' }}
             </span>
           </td>
         </tr>

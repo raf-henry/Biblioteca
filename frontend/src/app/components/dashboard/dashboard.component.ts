@@ -44,6 +44,34 @@ export class DashboardComponent implements OnInit {
       .slice(0, 5);
   });
 
+  topBooks = computed(() => {
+    const l = this.loans();
+    const b = this.books();
+    
+    const counts: { [key: number]: number } = {};
+    l.forEach(loan => {
+      if (loan.book && loan.book.id) {
+        counts[loan.book.id] = (counts[loan.book.id] || 0) + 1;
+      }
+    });
+
+    const topList = Object.keys(counts).map(id => {
+      const book = b.find(book => book.id === Number(id));
+      return {
+        title: book?.title || 'Livro Desconhecido',
+        count: counts[Number(id)]
+      };
+    });
+
+    const sorted = topList.sort((a, b) => b.count - a.count).slice(0, 5);
+    const max = sorted.length > 0 ? Math.max(...sorted.map(s => s.count)) : 1;
+
+    return sorted.map(item => ({
+      ...item,
+      percentage: (item.count / max) * 100
+    }));
+  });
+
   constructor(private libraryService: LibraryService) {}
 
   ngOnInit(): void {

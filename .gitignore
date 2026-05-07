@@ -1,37 +1,53 @@
+# Built-in ignores
 HELP.md
 target/
-node_modules/
-frontend/node_modules/
-.angular/
-frontend/.angular/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+bin/
+build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Node/Angular
+node_modules/
+**/node_modules/
+.angular/
+**/ .angular/
+dist/
+**/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.*.local
 
-### IntelliJ IDEA ###
-.idea
+# IDEs
+.vscode/
+.idea/
 *.iws
 *.iml
 *.ipr
-
-### NetBeans ###
+.settings/
+.classpath
+.project
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Stitch Assets
+stitch_assets/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Redundant folders
+Biblioteca/
