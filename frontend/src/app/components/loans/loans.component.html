@@ -49,7 +49,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let loan of loans()">
-          <td><span class="text-white font-semibold">{{ loan.borrowerName }}</span></td>
+          <td><span class="font-semibold">{{ loan.borrowerName }}</span></td>
           <td>{{ loan.book.title }}</td>
           <td>{{ loan.loanDate | date:'dd/MM/yyyy' }}</td>
           <td>{{ loan.dueDate | date:'dd/MM/yyyy' }}</td>

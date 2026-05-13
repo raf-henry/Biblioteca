@@ -1,6 +1,6 @@
 .header-actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
   align-items: center;
 }
 
@@ -10,32 +10,33 @@
 }
 
 .isbn-tag {
-  font-family: monospace;
+  font-family: inherit;
   font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .stock-badge {
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 4px 12px;
+  border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .in-stock {
-  background: rgba(16, 185, 129, 0.1);
+  background: var(--soft-cloud);
   color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--hairline);
 }
 
 .out-of-stock {
-  background: rgba(244, 63, 94, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(244, 63, 94, 0.2);
+  background: var(--canvas);
+  color: var(--sale);
+  border: 1px solid var(--sale);
 }
 
 .empty-row {
   text-align: center;
   color: var(--text-muted);
-  padding: 3rem !important;
+  padding: var(--spacing-section) !important;
 }

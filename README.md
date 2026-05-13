@@ -1,11 +1,11 @@
-# 📚 BibliotecaSystem - Gestão de Biblioteca 
+# 📚 BibliotecaSystem - Gestão de Biblioteca (Projeto Full-Stack Premium)
 
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-Uma solução full-stack moderna e sofisticada para gerenciamento de bibliotecas, projetada com foco em experiência do usuário (**UX**) e uma estética **Glassmorphism** de alto padrão.
+Uma solução full-stack moderna e sofisticada para gerenciamento de bibliotecas, projetada com foco em experiência do usuário (**UX**) e uma estética **Premium Minimalista** inspirada em grandes sistemas de design modernos.
 
 ---
 
@@ -14,11 +14,12 @@ Uma solução full-stack moderna e sofisticada para gerenciamento de bibliotecas
 - **📊 Dashboard Inteligente**: Visualize métricas em tempo real (Total de Livros, Exemplares Disponíveis, Empréstimos Ativos e Atrasos).
 - **📖 Inventário de Livros**: Gestão completa de acervo com metadados estendidos (Ano, Gênero, ISBN) e controle dinâmico de estoque.
 - **🤝 Sistema de Empréstimos**: 
-  - Fluxo de retirada e devolução simplificado.
+  - Fluxo de retirada e devolução simplificado com alinhamento visual preciso.
   - **Cálculo de Multas Automático**: R$ 2,00 por dia de atraso.
   - Verificação automática de disponibilidade de estoque.
 - **👤 Gestão de Autores**: Cadastro organizado de autores e suas nacionalidades.
-- **🎨 Design Ultra-Moderno**: Interface baseada em transparências, desfoque de fundo e animações suaves.
+- **🎨 Design Premium & Dinâmico**: Interface baseada em alto contraste, grids de 8px, formas em pílula e animações de entrada fluidas.
+- **📈 Gráficos Modernos**: Visualização de livros mais emprestados com barras em degradê.
 - **🚀 Performance**: Implementado com **Angular Signals** e modo **Zoneless** para máxima reatividade.
 
 ---
@@ -27,7 +28,7 @@ Uma solução full-stack moderna e sofisticada para gerenciamento de bibliotecas
 
 ### Frontend
 - **Angular 19+**: Componentes Standalone e Signals API.
-- **CSS3**: Design System proprietário baseado em Glassmorphism.
+- **CSS3**: Design System proprietário baseado em estética Retail Premium.
 - **Zoneless**: Gerenciamento de mudanças de alto desempenho.
 
 ### Backend

@@ -7,7 +7,6 @@
   <div class="stats-grid">
     <!-- Total Books -->
     <div class="glass-card stat-card" id="card-total-books">
-      <div class="stat-icon">📚</div>
       <div class="stat-info">
         <h3>Total de Livros</h3>
         <p class="stat-value">{{ stats().totalBooks }}</p>
@@ -16,7 +15,6 @@
 
     <!-- Available -->
     <div class="glass-card stat-card" id="card-available">
-      <div class="stat-icon">✅</div>
       <div class="stat-info">
         <h3>Exemplares Disponíveis</h3>
         <p class="stat-value">{{ stats().availableBooks }}</p>
@@ -25,7 +23,6 @@
 
     <!-- Active Loans -->
     <div class="glass-card stat-card highlight-indigo" id="card-loans">
-      <div class="stat-icon">🤝</div>
       <div class="stat-info">
         <h3>Empréstimos Ativos</h3>
         <p class="stat-value">{{ stats().activeLoans }}</p>
@@ -34,7 +31,6 @@
 
     <!-- Overdue -->
     <div class="glass-card stat-card highlight-rose" id="card-overdue">
-      <div class="stat-icon">⚠️</div>
       <div class="stat-info">
         <h3>Atrasados</h3>
         <p class="stat-value">{{ stats().overdueLoans }}</p>
@@ -73,15 +69,12 @@
       </div>
       <div class="actions-grid">
         <button class="action-btn" routerLink="/books">
-          <span class="icon">➕</span>
           <span>Novo Livro</span>
         </button>
         <button class="action-btn" routerLink="/loans">
-          <span class="icon">📝</span>
           <span>Novo Empréstimo</span>
         </button>
         <button class="action-btn" routerLink="/authors">
-          <span class="icon">👤</span>
           <span>Gerenciar Autores</span>
         </button>
       </div>

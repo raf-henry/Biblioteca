@@ -43,7 +43,7 @@
       <tbody>
         <tr *ngFor="let author of authors()">
           <td><span class="id-badge">#{{ author.id }}</span></td>
-          <td><span class="text-white font-semibold">{{ author.name }}</span></td>
+          <td><span class="font-semibold">{{ author.name }}</span></td>
           <td>{{ author.nationality }}</td>
           <td class="actions-cell">
             <button class="icon-btn edit-btn" (click)="editAuthor(author)" title="Editar">✏️</button>
